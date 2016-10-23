@@ -1,0 +1,15 @@
+// Place all the styles related to the patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@-ms-viewport {
+  width: device-width;
+}
+
+@media screen and (max-width: 768px) {
+
+  .table {
+    max-width: 700px;
+  }
+}

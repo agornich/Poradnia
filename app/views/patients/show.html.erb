@@ -1,0 +1,38 @@
+PODGLĄD PACJENTA:
+<hr/>
+<h3><%= @patient.patient_display %></h3>
+<h4><%= @patient.patient_phone_number %></h4>
+<h4><%= @patient.patient_email %></h4>
+
+<hr/>
+SPIS WIZYT:
+<br>
+  <table class="table panel-body table-striped table-hover">
+    <thead>
+      <th>ID wizyty</th>
+      <th class="col-md-2">Data/ godzina wizyty</th>
+      <th>Usługa</th>
+      <th>Gabinet</th>
+      <th class="col-md-2">Specjalista</th>
+      <th>Uwagi</th>
+    </thead>
+
+<tbody>
+<% if @patient.visits.count > 0 %>
+
+<% @patient.visits.each do |p| %>
+  <tr>  
+    <th><%= p.id %></th>
+    <th><%= p.start_at.strftime("Data: %d-%m-%Y, Godz. %H:%M ") %></th>
+    <th><%= p.workshop.name %></th>
+    <th><%= p.office.name %></th>
+	<th><%= p.employee.employee_display2 %></th>
+    <th><%= p.description %></th>
+</tr>
+  <% end %>
+
+<% else %>
+  brak wizyt dla tego pacjenta
+<% end %>
+    </tbody>
+</table>

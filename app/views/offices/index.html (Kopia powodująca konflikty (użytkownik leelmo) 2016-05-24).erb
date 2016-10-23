@@ -1,0 +1,31 @@
+<h1>PODGLĄD GABINETÓW</h1>
+<hr/>
+  <table class="table panel-body table-striped table-hover">
+    <thead>
+      <th class="idmark">ID</th>
+      <th class="idmark">Skrót</th>
+      <th>Nazwa</th>
+      <th>Piętro</th>
+      <th>Wyposażenie</th>
+      <th class="idmark">Akcje</th>
+    </thead>
+    <tbody>
+      <% @offices.each do |office| %>
+      <tr>
+        <td class="idmark"><%= office.id %></td>
+        <td class="idmark"><%= office.shortcut %></td>
+        <td><%= office.name %></td>
+        <td><%= office.floor %></td>
+        <td><%= office.description %></td>
+        <td class="idmark">
+          <%= link_to edit_office_path(office.id), class: "btn btn-info btn-xs" do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+          <%= link_to office_path(office.id), class: "btn btn-danger btn-xs", method: :delete do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>

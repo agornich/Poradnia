@@ -1,0 +1,11 @@
+<%= form_tag employee_sessions_path, class: 'form-signin', :method => :post do  %>
+
+<div class="container">
+    <h2 class="text-muted">PORADNIA<br/></h2>
+    <h4 class="text-muted">PANEL LOGOWANIA</h4>
+    <%= text_field_tag :email, nil , class: 'form-control', placeholder: 'email'%>
+    <%= password_field_tag :password, nil, class: 'form-control', placeholder: 'hasło' %>
+    <%= submit_tag "ZALOGUJ SIĘ", class: 'btn btn-lg btn-primary btn-block' %>
+</div>
+
+<% end %>

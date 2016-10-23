@@ -1,0 +1,53 @@
+<%= form_for @visit, html: {class: 'form-horizontal'} do |f| %>
+<%= f.error_messages :header_message => "Nieprawidłowe wartości.",
+:message => "Popraw następujące pola:",
+  :header_tag => :h3 %>  
+
+  <div class="form-group">
+    <%= f.label :patient_id, 'Pacjent', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.select(:patient_id, options_from_collection_for_select(Patient.all, :id, :patient_display),{:include_blank => true}, class: 'form-control input-sm') %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :workshop_id, 'Rodzaj wizyty', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.select(:workshop_id, options_from_collection_for_select(Workshop.all, :id, :name_with_price),{:include_blank => true}, class: 'form-control input-sm') %>
+    </div>
+  </div>  
+<div class="form-group">
+  <%= f.label :office_id, 'Gabinet', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.select(:office_id, options_from_collection_for_select(Office.all, :id, :name),{:include_blank => true}, class: 'form-control input-sm' ) %>
+    </div>
+</div>
+ <div class="form-group">
+    <%= f.label :employee_id, 'Specjalista', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.select(:employee_id, options_from_collection_for_select(Employee.all, :id, :employee_display), {:include_blank => true}, class: 'form-control input-sm') %>
+    </div>
+  </div> 
+<div class="form-group">
+  <%= f.label :start_at, 'Data i godzina wizyty', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <hr/>
+      <%= f.time_select :start_at, {:include_blank => true}, class: 'form-control input-sm' %>    
+      <hr/>
+      <%= f.date_select :start_at, {:start_year=>2016, :include_blank => true}, class: 'form-control input-sm' %>
+    </div>
+  </div>
+<div class="form-group">
+  <%= f.label :description, 'Opis', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.text_area :description, class: 'form-control', placeholder: "Opis" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-6">
+      <%= f.submit 'ZAPISZ', class: "btn btn-primary" %>
+      <%= link_to 'ANULUJ', visits_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+      
+<!--</form>-->
+<% end %>

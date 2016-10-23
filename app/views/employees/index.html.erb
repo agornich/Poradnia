@@ -1,0 +1,47 @@
+  <!--Lista pacjentów-->
+  <div class="container-fluid">
+      <h2>SPECJALIŚCI</h2>
+    <hr/>
+    <%= link_to '+ dodaj nowego specjalistę', new_employee_path, class: "btn btn-primary btn-lg active" %>
+      <hr/>
+  <!--    Wyszukiwarka -->
+    <%= form_tag employees_path, :method => 'get' do %>
+    <div class="form-group">
+      <%= search_field_tag :search, params[:search], placeholder:'Szukaj ' %>
+      <%= submit_tag "Szukaj", class: 'btn btn-success' %>
+    </div>
+    <% end %>
+  <!-- Tabela -->
+  <table class="table panel-body table-striped table-hover">
+    <thead>
+      <th class="idmark">ID</th>
+      <th>Specjalista</th>
+      <th class="emailmark">E-mail</th>
+      <th>Specjalizacja/tagi</th>
+      <th>Is admin?</th>
+      <th>Akcje</th>
+    </thead>
+    <tbody>
+    <% @employees.each do |employee| %>
+
+      <tr>
+        <td class="idmark"><%= employee.id %></td>
+        <td><%= link_to employee.employee_display2, employee_path(employee) %></td> 
+		<td class="emailmark"><%= employee.email %></td>
+        <td><%= employee.specialization %></td>
+        <td><%= employee.is_admin %></td>
+        <td>
+          <%= link_to edit_employee_path(employee.id), class: "btn btn-info btn-xs" do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+          
+          <%= link_to employee_path(employee.id), class: "btn btn-danger btn-xs", method: :delete do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+  </table>
+  </div>

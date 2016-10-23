@@ -1,0 +1,61 @@
+  <!--Lista pacjentów-->
+  <div class="container-fluid">
+
+    <h1>PACJENCI</h1>  
+    <%= link_to '+ dodaj nowego pacjenta', new_patient_path, class: 'btn btn-primary btn-lg active'%>
+    <hr/>
+
+    <!--    Wyszukiwarka -->
+    <%= form_tag patients_path, :method => 'get' do %>
+    <div class="form-group">
+      <%= search_field_tag :search, params[:search], placeholder:'Szukaj ' %>
+      <%= submit_tag "Szukaj", class: 'btn btn-success' %>
+    </div>
+    <% end %>
+
+    <!-- Tabela wyświetlająca pacjentów -->
+    <table class="table panel-body table-striped table-hover">
+      <thead>
+        <th>ID</th>
+        <th>Nazwisko</th>
+        <th>Imię</th>
+        <th>Pesel</th>
+        <th>Data urodzenia</th>
+        <th>Płeć</th>
+        <th>Numer telefonu</th>
+        <th>E-mail</th>
+
+        <th>Ilość wizyt</th>
+
+        <th>Akcje</th>
+      </thead>
+    <tbody>
+      
+      <% @patients.each do |patient| %>
+
+        <tr>
+          <td><%= patient.id %></td>
+          <td><%= link_to patient.surname,  patient_path(patient) %> </td>
+          <td><%= link_to patient.name, patient_path(patient) %> </td>
+          <td><%= link_to patient.pesel, patient_path(patient) %></td>
+          <td><%= patient.birthdate %></td>
+          <td><%= patient.sex %></td>
+          <td><%= patient.phone %></td>
+          <td><%= patient.email %></td>
+          <td><%= patient.visits.count %></td>
+          <td>
+            <%= link_to edit_patient_path(patient.id), class: "btn btn-info btn-xs" do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+
+            <%= link_to patient_path(patient.id), class: "btn btn-danger btn-xs", method: :delete do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+  </div>
+  

@@ -1,0 +1,60 @@
+<%= form_for @employee, html: {class: 'form-horizontal'} do |f| %>
+<%= f.error_messages :header_message => "Nieprawidłowe wartości.",
+:message => "Popraw następujące pola:",
+  :header_tag => :h3 %>  
+
+  <div class="form-group">
+    <%= f.label :name, 'Imię', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: 'form-control', placeholder: "Wpisz imię" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :surname, 'Nazwisko', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.text_field :surname, class: 'form-control', placeholder: "Wpisz nazwisko" %>
+    </div>
+  </div>  
+  <div class="form-group">
+    <%= f.label :email, 'E-mail', class: 'col-sm-4 control-label' %>
+      <div class="col-sm-6">
+        <%= f.text_field :email, class: 'form-control', placeholder: "Podaj e-mail" %>
+      </div>
+    </div>
+
+  <div class="form-group">
+    <%= f.label :specialization, 'Specjalizacja', class: 'col-sm-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.text_area :specialization, class: 'form-control', placeholder: "Wpisz specjalizację" %>
+    </div>
+  </div>
+  <div class="field">
+     <%= f.label :password, class: 'col-sm-4 control-label'  %><br />
+        <div class="col-sm-6">
+     <%= f.password_field :password, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="field">
+     <%= f.label :password_confirmation, class: 'col-sm-4 control-label' %><br />
+    <div class="col-sm-6">
+     <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+  </div>
+<% if current_user && current_user.is_admin %>
+    <div class="field">
+      <div class="col-sm-offset-4 col-sm-6">
+      <%= f.label :is_admin %><br />
+      <%= f.check_box :is_admin %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-6">
+      <%= f.submit 'ZAPISZ', class: "btn btn-primary" %>
+      <%= link_to 'ANULUJ', employees_path, class: 'btn btn-default' %>
+    </div>
+  </div>
+      
+<!--</form>-->
+<% end %>

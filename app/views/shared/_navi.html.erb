@@ -1,0 +1,22 @@
+      <div class="masthead">
+        <h3 class="text-muted">PORADNIA,</h3>
+        <h5> zalogowany jako: <%= (current_user.name) %></h5>
+        <nav>
+          <ul class="nav nav-justified">
+            
+              <li class="blue"><%= link_to 'WIZYTY', visits_path %></li>
+              <li class="darkblue"><%= link_to 'PACJENCI', patients_path %></li>
+            <% if current_user.is_admin %>
+              <li class="green"><%= link_to 'SPECJALIŚCI', employees_path %></li>
+              <% end %>
+              <li class="yellow"><%= link_to 'USTAWIENIA', settings_path %></li>
+            <% if current_user %>
+              <li class="orange"><%= link_to "EDYTUJ PROFIL", edit_employee_path(current_user.id) %></li>
+		      <li class="pink"><%= link_to "WYLOGUJ", :logout, method: :post %></li>
+              
+			<% else %>
+		      <li><%= link_to "ZALOGUJ", :login %></li>
+    		<% end %>   
+          </ul>
+        </nav>
+      </div>

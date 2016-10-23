@@ -1,0 +1,38 @@
+<h1>PODGLĄD USŁUG</h1>
+<hr/>
+<!--    Wyszukiwarka -->
+<%= form_tag workshops_path, :method => 'get' do %>
+  <div class="form-group">
+    <%= search_field_tag :search, params[:search], placeholder:'Szukaj ' %>
+    <%= submit_tag "Szukaj", class: 'btn btn-success' %>
+  </div>
+<% end %>
+<table class="table panel-body table-striped table-hover">
+  <thead>
+    <th class="idmark">ID</th>
+    <th class="idmark">Skrót</th>
+    <th>Nazwa</th>
+    <th>Opis</th>
+    <th>Cena</th>
+    <th class="idmark">Akcje</th>
+  </thead>
+  <tbody>  
+    <% @workshops.each do |workshop| %>
+      <tr>
+        <td class="idmark"><%= workshop.id %></td>
+        <td class="idmark"><%= workshop.shortcut %></td>
+        <td><%= workshop.name %></td>
+        <td><%= workshop.description %></td>
+        <td><%= workshop.price %> PLN</td>
+        <td class="idmark">
+          <%= link_to edit_workshop_path(workshop.id), class: "btn btn-info btn-xs" do %>
+            <span class="glyphicon glyphicon-pencil"></span>
+          <% end %>
+          <%= link_to workshop_path(workshop.id), class: "btn btn-danger btn-xs", method: :delete do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>

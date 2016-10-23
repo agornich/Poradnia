@@ -1,0 +1,47 @@
+<!--Lista pacjentów-->
+  <div class="container-fluid">
+      <h1>WIZYTY</h1>
+
+        <%= link_to '+ dodaj nową wizytę', new_visit_path, class: "btn btn-primary btn-lg active" %>
+      <hr/>
+  <!-- Tabela -->
+  <table class="tvisits table panel-body table-striped table-hover">
+    <thead>
+      <th class="idmark">ID</th>
+      <th class="col-sm-3">Data i godzina wizyty</th>
+      <th class="col-sm-2">Pacjent</th>
+      <th>Rodzaj</th>
+      <th class="idmark">Gabinet</th>
+      <th class="idmark">Specjalista</th>    
+      <th class="idmark">Uwagi</th>
+      <th class="eactions">Akcje</th>
+    </thead>
+    
+    <tbody>
+      
+      <% @visits.each do |visit| %>
+
+        <tr>
+          <td class="idmark"><%= visit.id %></td>
+          <td><%= visit.start_at.strftime("Data: %d-%m-%Y Godzina: %H:%M ") %></td>
+          <td><%= visit.patient.patient_display2 %></td>
+          <td><%= visit.workshop.name %></td>
+          <td class="idmark"><%= visit.office.name %></td>
+          <td class="idmark"><%= visit.employee.employee_display2 %></td>
+          <td class="idmark"><%= visit.description %></td>
+          <td  class="eactions">
+            <%= link_to edit_visit_path(visit.id), class: "btn btn-info btn-xs" do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+            <% end %>
+
+            <%= link_to visit_path(visit.id), class: "btn btn-danger btn-xs", method: :delete do %>
+              <span class="glyphicon glyphicon-trash"></span>
+            <% end %>
+          </td>
+        </tr>
+      
+
+      <% end %>
+      
+    </tbody>
+  </table>

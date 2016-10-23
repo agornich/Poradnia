@@ -1,0 +1,33 @@
+<%= form_for @office, html: {class: 'form-horizontal'} do |f| %>
+  <div class="form-group">
+    <%= f.label :shortcut, 'Skrót', class: 'col-sm-2 col-md-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.text_field :shortcut, class: 'form-control col-md-4', placeholder: "Wpisz nazwę" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, 'Nazwa', class: 'col-sm-2 col-md-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.text_field :name, class: 'form-control col-md-4', placeholder: "Wpisz nazwę" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :floor, 'Piętro', class: 'col-sm-2 col-md-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.text_field :floor, class: 'form-control col-md-4', placeholder: "Wpisz piętro" %>
+    </div>
+  </div>  
+  <div class="form-group">
+    <%= f.label :description, 'Wyposażenie', class: 'col-sm-2 col-md-4 control-label' %>
+    <div class="col-sm-6">
+      <%= f.text_area :description, class: 'form-control col-md-4', placeholder: "Wpisz stan wyposażenia gabinetu" %>
+    </div>
+  </div>  
+
+  <div class="form-group">
+    <div class="col-md-offset-4 col-md-6">
+      <%= f.submit 'ZAPISZ', class: "btn btn-primary" %>
+      <%= link_to 'ANULUJ', offices_path, class: 'btn btn-default' %>
+    </div>
+  </div>  
+<% end %>
